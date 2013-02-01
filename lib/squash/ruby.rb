@@ -17,10 +17,13 @@ require 'socket'
 require 'net/https'
 
 require 'json'
-begin
-  Gem::Specification.find_by_name('system_timer')
-  require 'system_timer'
-rescue Gem::LoadError
+
+if RUBY_VERSION < "1.9"
+  begin
+    #Gem::Specification.find_by_name('system_timer')
+    require 'system_timer'
+  rescue Gem::LoadError
+  end
 end
 
 # Container for methods relating to notifying Squash of exceptions.
